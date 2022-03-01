@@ -37,6 +37,7 @@ namespace DynamicArray
                         break;
                     case ExitCommand:
                         isActive = false;
+                        Console.WriteLine("Выход ...");
                         break;
                     default:
                         Console.WriteLine("+");
@@ -54,8 +55,6 @@ namespace DynamicArray
                         break;
                 }
             }
-
-            Console.WriteLine("Выход ...");
         }
     }
 }
