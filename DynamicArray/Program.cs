@@ -10,46 +10,52 @@ namespace DynamicArray
     {
         static void Main(string[] args)
         {
+            const string SumCommand = "sum";
+            const string ExitCommand = "exit";
+
             int[] numbers = new int[1];
             int[] tempNumbers;
             int sumNumbersArray = 0;
             int userInputNumber;
             string userInputCommand;
-            string sumCommand = "sum";
             bool isActive = true;
 
             while (isActive == true)
             {
                 userInputCommand = Console.ReadLine();
 
-                if (userInputCommand.Equals(sumCommand))
+                switch (userInputCommand)
                 {
-                    isActive = false;
-                    Console.WriteLine("=");
-                }
-                else
-                {
-                    Console.WriteLine("+");
-                    userInputNumber = Convert.ToInt32(userInputCommand);
+                    case SumCommand:
+                        Console.WriteLine("=");
+                        sumNumbersArray = 0;
+                        foreach (int number in numbers)
+                        {
+                            sumNumbersArray += number;
+                        }
+                        Console.WriteLine(sumNumbersArray + "\n+");
+                        break;
+                    case ExitCommand:
+                        isActive = false;
+                        break;
+                    default:
+                        Console.WriteLine("+");
+                        userInputNumber = Convert.ToInt32(userInputCommand);
 
-                    numbers[numbers.Length - 1] = userInputNumber;
-                    tempNumbers = new int[numbers.Length + 1];
+                        numbers[numbers.Length - 1] = userInputNumber;
+                        tempNumbers = new int[numbers.Length + 1];
 
-                    for (int currentIndex = 0; currentIndex < numbers.Length; currentIndex++)
-                    {
-                        tempNumbers[currentIndex] = numbers[currentIndex];
-                    }
+                        for (int currentIndex = 0; currentIndex < numbers.Length; currentIndex++)
+                        {
+                            tempNumbers[currentIndex] = numbers[currentIndex];
+                        }
 
-                    numbers = tempNumbers;
+                        numbers = tempNumbers;
+                        break;
                 }
             }
 
-            foreach (var number in numbers)
-            {
-                sumNumbersArray += number;
-            }
-
-            Console.WriteLine(sumNumbersArray);
+            Console.WriteLine("Выход ...");
         }
     }
 }
